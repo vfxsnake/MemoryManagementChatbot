@@ -2,6 +2,7 @@
 #define CHATGUI_H_
 
 #include <wx/wx.h>
+#include <memory> // includes smart pointers to the std library
 
 class ChatLogic; // forward declaration
 
