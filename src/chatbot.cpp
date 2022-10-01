@@ -42,11 +42,66 @@ ChatBot::~ChatBot()
     }
 }
 
-//// STUDENT CODE
-////
+// copy constructor (deep copy) 
+ChatBot::ChatBot(const ChatBot &source)
+{
+    std::cout << "ChatBot copy constructor" << std::endl;
+    _currentNode = source._currentNode;
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode;
+    // creates a new image using the dereference pointer from source._image
+    _image = new wxBitmap(*source._image);
+}
 
-////
-//// EOF STUDENT CODE
+// assign operator overloading as deep copy
+ChatBot& ChatBot::operator=(const ChatBot &source)
+{
+    std::cout << "ChatBot assign operator" << std::endl;
+    if(&source == this)
+        return *this;
+
+    _currentNode = source._currentNode;
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode;
+    // creates a new image using the dereference pointer from source._image
+    _image = new wxBitmap(*source._image);
+}
+
+//  move constructor:
+ ChatBot::ChatBot(ChatBot &&source)
+ {
+    std::cout << "ChatBot move cosntructor" << std::endl;
+    _currentNode = source._currentNode;
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode;
+    _image = source._image;
+
+    // cleans temporal class instance so it can be destrolled correctly.
+    source._currentNode = nullptr;
+    source._chatLogic = nullptr;
+    source._rootNode = nullptr;
+    source._image = nullptr;
+
+ }
+
+// move asigment operator overload.
+ ChatBot& ChatBot::operator=(ChatBot &&source)
+ {
+    std::cout << "move assigment operator overload." << std::endl;
+    if(&source == this)
+        return *this;
+    _currentNode = source._currentNode;
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode;
+    _image = source._image;
+    
+    //clears temporal souce elements:
+    source._currentNode = nullptr;
+    source._chatLogic = nullptr;
+    source._rootNode = nullptr;
+    source._image = nullptr; 
+ }
+
 
 void ChatBot::ReceiveMessageFromUser(std::string message)
 {
