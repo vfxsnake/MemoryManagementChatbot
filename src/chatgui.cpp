@@ -134,8 +134,7 @@ ChatBotPanelDialog::~ChatBotPanelDialog()
 {
     //// STUDENT CODE
     ////
-    std::cout << "calling chabot panel dialog desructor: deleteing chhat loginc." << std::endl;
-    delete _chatLogic;
+    std::cout << "calling chabot panel dialog desructor: deleteing chat loginc." << std::endl;
 
     ////
     //// EOF STUDENT CODE
