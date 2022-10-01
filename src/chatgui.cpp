@@ -133,8 +133,8 @@ ChatBotPanelDialog::ChatBotPanelDialog(wxWindow *parent, wxWindowID id)
 ChatBotPanelDialog::~ChatBotPanelDialog()
 {
     //// STUDENT CODE
-    ////
-    std::cout << "calling chabot panel dialog desructor: deleteing chat loginc." << std::endl;
+    //// no need to delete the ChatLogic instace, the smart pointer will take the responsability.
+    std::cout << "calling chabot panel dialog desructor." << std::endl;
 
     ////
     //// EOF STUDENT CODE
