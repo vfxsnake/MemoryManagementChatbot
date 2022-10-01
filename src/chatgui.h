@@ -14,8 +14,8 @@ private:
     wxBoxSizer *_dialogSizer;
     wxBitmap _image;
 
-    // Chat Logic as unique pointer
-    std::unique_ptr<ChatLogic> *_chatLogic;
+    // Chat Logic as unique pointer no need of the * identifier.
+    std::unique_ptr<ChatLogic> _chatLogic;
 
 
 public:
@@ -24,7 +24,11 @@ public:
     ~ChatBotPanelDialog();
 
     // getter / setter
-    ChatLogic *GetChatLogicHandle() { return _chatLogic->get(); }
+    ChatLogic *GetChatLogicHandle()
+    { 
+        // return ChatLogic maged object.
+        return _chatLogic.get();
+    }
 
     // events
     void paintEvent(wxPaintEvent &evt);
