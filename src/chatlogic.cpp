@@ -179,17 +179,15 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
     }
 
         // create instance of chatbot
-    ChatBot chatBot = ChatBot("../images/chatbot.png");
-    SetChatbotHandle(&chatBot);
+    ChatBot chat_bot("../images/chatbot.png");
+    SetChatbotHandle(&chat_bot);
     // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
-    _chatBot->SetChatLogicHandle(this);
+    chat_bot.SetChatLogicHandle(this);
 
     // add chatbot to graph root node
-    _chatBot->SetRootNode(rootNode);
-    rootNode->MoveChatbotHere(_chatBot);
+    chat_bot.SetRootNode(rootNode);
+    rootNode->MoveChatbotHere(chat_bot);
     
-    ////
-    //// EOF STUDENT CODE
 }
 
 void ChatLogic::SetPanelDialogHandle(ChatBotPanelDialog *panelDialog)

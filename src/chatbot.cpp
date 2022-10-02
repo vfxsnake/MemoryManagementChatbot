@@ -45,8 +45,8 @@ ChatBot::~ChatBot()
 // copy constructor (deep copy) 
 ChatBot::ChatBot(const ChatBot &source)
 {
-    std::cout << "ChatBot copy constructor" << std::endl;
-    _currentNode = source._currentNode;
+    std::cout << "ChatBot copy(deep) constructor" << std::endl;
+    
     _chatLogic = source._chatLogic;
     _rootNode = source._rootNode;
     // creates a new image using the dereference pointer from source._image
@@ -60,11 +60,15 @@ ChatBot& ChatBot::operator=(const ChatBot &source)
     if(&source == this)
         return *this;
 
-    _currentNode = source._currentNode;
+    // cleans image is it was initialized before.
+    if (_image)
+        delete _image;
+
     _chatLogic = source._chatLogic;
     _rootNode = source._rootNode;
     // creates a new image using the dereference pointer from source._image
     _image = new wxBitmap(*source._image);
+    return *this;
 }
 
 //  move constructor:
@@ -84,22 +88,22 @@ ChatBot& ChatBot::operator=(const ChatBot &source)
 
  }
 
-// move asigment operator overload.
+// move asigment operator overload
  ChatBot& ChatBot::operator=(ChatBot &&source)
  {
     std::cout << "move assigment operator overload." << std::endl;
     if(&source == this)
         return *this;
-    _currentNode = source._currentNode;
+
     _chatLogic = source._chatLogic;
     _rootNode = source._rootNode;
     _image = source._image;
     
     //clears temporal souce elements:
-    source._currentNode = nullptr;
     source._chatLogic = nullptr;
     source._rootNode = nullptr;
     source._image = nullptr; 
+    return *this;
  }
 
 
