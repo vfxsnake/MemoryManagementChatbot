@@ -46,11 +46,10 @@ ChatBot::~ChatBot()
 ChatBot::ChatBot(const ChatBot &source)
 {
     std::cout << "ChatBot copy(deep) constructor" << std::endl;
-    
+    _image = new wxBitmap(*source._image);
     _chatLogic = source._chatLogic;
     _rootNode = source._rootNode;
     // creates a new image using the dereference pointer from source._image
-    _image = new wxBitmap(*source._image);
 }
 
 // assign operator overloading as deep copy
@@ -63,11 +62,10 @@ ChatBot& ChatBot::operator=(const ChatBot &source)
     // cleans image is it was initialized before.
     if (_image)
         delete _image;
-
-    _chatLogic = source._chatLogic;
-    _rootNode = source._rootNode;
     // creates a new image using the dereference pointer from source._image
     _image = new wxBitmap(*source._image);
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode;
     return *this;
 }
 
@@ -75,10 +73,10 @@ ChatBot& ChatBot::operator=(const ChatBot &source)
  ChatBot::ChatBot(ChatBot &&source)
  {
     std::cout << "ChatBot move cosntructor" << std::endl;
+    _image = source._image;
     _currentNode = source._currentNode;
     _chatLogic = source._chatLogic;
     _rootNode = source._rootNode;
-    _image = source._image;
 
     // cleans temporal class instance so it can be destrolled correctly.
     source._currentNode = nullptr;
@@ -95,9 +93,9 @@ ChatBot& ChatBot::operator=(const ChatBot &source)
     if(&source == this)
         return *this;
 
+    _image = source._image;
     _chatLogic = source._chatLogic;
     _rootNode = source._rootNode;
-    _image = source._image;
     
     //clears temporal souce elements:
     source._chatLogic = nullptr;
