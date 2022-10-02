@@ -74,12 +74,10 @@ ChatBot& ChatBot::operator=(const ChatBot &source)
  {
     std::cout << "ChatBot move cosntructor" << std::endl;
     _image = source._image;
-    _currentNode = source._currentNode;
     _chatLogic = source._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
     _rootNode = source._rootNode;
-
     // cleans temporal class instance so it can be destrolled correctly.
-    source._currentNode = nullptr;
     source._chatLogic = nullptr;
     source._rootNode = nullptr;
     source._image = nullptr;
@@ -95,6 +93,7 @@ ChatBot& ChatBot::operator=(const ChatBot &source)
 
     _image = source._image;
     _chatLogic = source._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
     _rootNode = source._rootNode;
     
     //clears temporal souce elements:
